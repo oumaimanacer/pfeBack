@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <!--<title>Laravel</title>-->
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -29,9 +30,9 @@
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
+                        <!--@if (Route::has('register.form'))
+                            <a href="{{ route('register.form') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif-->
                     @endauth
                 </div>
             @endif
@@ -45,7 +46,7 @@
                     </svg>
                 </div>
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                <!--<div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
                             <div class="flex items-center">
