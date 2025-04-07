@@ -4,10 +4,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
+
 
 
 /*
@@ -34,7 +36,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('loginF');
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+//Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
 Route::get('/forgot-password', [PasswordResetController::class, 'create'])->name('password.request');
 Route::post('/forgot-password', [PasswordResetController::class, 'store']);
@@ -64,4 +70,11 @@ Route::put('/formations/{id}', [FormationController::class, 'update'])->name('fo
 Route::get('/formations/create', [FormationController::class, 'create'])->name('formations.create');
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
+Route::get('/employees', [EmployeeController::class, 'index'])->name('users.index');
+Route::get('/employees/create', [EmployeeController::class, 'create'])->name('users.create');
+Route::post('/employees', [EmployeeController::class, 'store'])->name('users.store');
+Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('users.edit');
+Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('users.update');
+Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('users.destroy');
+
 

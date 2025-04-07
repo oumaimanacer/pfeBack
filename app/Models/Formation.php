@@ -9,15 +9,14 @@ class Formation extends Model
 {
     use HasFactory;
     protected $table = 'formations';
-    protected $primaryKey = 'id';
-    public $timestamps = true;
 
     protected $fillable = [
-        'Titre', 'Description', 'DateDebut', 'DateFin', 'nbrPlace', 'type'
+        'titre',
+        'description',
+        'date_debut',
+        'date_fin',
+        'nbr_place',
+        'type',
+        'formateur'
     ];
-
-    public function formateurInterne()
-    {
-        return $this->belongsTo(FormateurInterne::class, 'formateur_interne_id');
-    }
 }

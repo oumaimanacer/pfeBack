@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Formation;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -17,32 +18,38 @@ class FormationController extends Controller
     }
     public function create()
 {
-    return view('formations.create');
+    $users = User::all(); // Récupérer tous les utilisateurs
+
+    return view('formations.create',compact('users'));
 }
 
 public function store(Request $request)
 {
     $request->validate([
-        'Titre' => 'required|string|max:255',
-        'Description' => 'required|string',
-        'DateDebut' => 'required|date',
-        'DateFin' => 'required|date|after_or_equal:DateDebut',
-        'nbrPlace' => 'required|integer|min:1',
+        'titre' => 'required|string|max:255',
+        'description' => 'required|string',
+        'date_debut' => 'required|date',
+        'date_fin' => 'required|date|after_or_equal:date_debut',
+        'nbr_place' => 'required|integer|min:1',
         'type' => 'required|string',
+        'formateur_type' => 'required|string|in:interne,externe',
+        'formateur_interne' => 'nullable|string|required_if:formateur_type,interne',
+        'formateur_externe' => 'nullable|string|required_if:formateur_type,externe',
     ]);
 
-    $formation = new Formation();
-    $formation->Titre = $request->Titre;
-    $formation->Description = $request->Description;
-    $formation->DateDebut = $request->DateDebut;
-    $formation->DateFin = $request->DateFin;
-    $formation->nbrPlace = $request->nbrPlace;
-    $formation->type = $request->type;
+    Formation::create([
+        'titre' => $request->titre,
+        'description' => $request->description,
+        'date_debut' => $request->date_debut,
+        'date_fin' => $request->date_fin,
+        'nbr_place' => $request->nbr_place,
+        'type' => $request->type,
+        'formateur' => $request->formateur_type === 'interne' ? $request->formateur_interne : $request->formateur_externe,
+    ]);
 
-    $formation->save();
-
-    return redirect()->route('formations.index')->with('success', 'Formation ajoutée avec succès.');
+    return redirect()->route('formations.index')->with('success', 'Formation ajoutée avec succès !');
 }
+
 
     public function edit($id)
 {
@@ -59,6 +66,7 @@ public function update(Request $request, $id)
         'DateFin' => 'required|date|after_or_equal:DateDebut',
         'nbrPlace' => 'required|integer|min:1',
         'type' => 'required|string',
+        'formateur' => 'required|string',
     ]);
 
     $formation = Formation::findOrFail($id);
@@ -68,6 +76,7 @@ public function update(Request $request, $id)
     $formation->DateFin = $request->DateFin;
     $formation->nbrPlace = $request->nbrPlace;
     $formation->type = $request->type;
+    $formation->formateur = $request->formateur;
 
 
     $formation->save();

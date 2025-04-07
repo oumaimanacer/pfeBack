@@ -13,10 +13,25 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
 
-    protected $fillable = ['nom', 'prenom', 'email', 'password', 'role'];
+    protected $fillable = [
+        'nom',
+        'prenom',
+        'email',
+        'password',
+        'role',
+        'poste',
+        'dateEmbauche',
+        'entreprise'
+    ];
 
-    public function employes()
-    {
-        return $this->hasMany(Employe::class);
-    }
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $casts = [
+        //'password' => 'hashed',
+        'dateEmbauche' => 'date',
+    ];
+
+   
 }

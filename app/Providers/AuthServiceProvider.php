@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illum;
+use Kreait\Firebase\Auth;
+use Kreait\Firebase\Factory;
+use Carbon\Laravel\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Services\FirebaseAuthService;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,8 +28,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+        //$this->registerPolicies();
 
-        //
+        $this->app->singleton(Auth::class, function ($app) {
+            $firebaseCredentials = config('firebase.credentials');
+
+            if (!file_exists($firebaseCredentials)) {
+                throw new \Exception("Le fichier des credentials Firebase est introuvable : " . $firebaseCredentials);
+            }
+
+            return (new Factory)
+                ->withServiceAccount($firebaseCredentials)
+                ->createAuth();
+        });
     }
 }
