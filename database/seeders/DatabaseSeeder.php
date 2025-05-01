@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
+
+//use Spatie\Permission\PermissionRegistrar;
 
 
 class DatabaseSeeder extends Seeder
@@ -16,12 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //$this->call([
-           // UserSeeder::class,
-           // EntrepriseSeeder::class,
-           // EmployeSeeder::class,
-        //]);
-         // Création des rôles
+       // Reset cache
+       app()[PermissionRegistrar::class]->forgetCachedPermissions();
          $superAdminRole = Role::firstOrCreate(['name' => 'SuperAdmin']);
          $adminRole = Role::firstOrCreate(['name' => 'Admin']);
  
@@ -36,10 +35,10 @@ class DatabaseSeeder extends Seeder
  
          
          $admin = User::firstOrCreate([
-             'email' => 'Oumeymabenafia@gmail.com'
+             'email' => 'admin@elyosdigital.tn'
          ], [
              'name' => 'Admin User',
-             'password' => bcrypt('oumaima2025'),
+             'password' => bcrypt('admin2025'),
          ]);
          $admin->assignRole($adminRole);
      }

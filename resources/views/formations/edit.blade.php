@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h2 class="text-primary">Edit Training</h2>
-    <form action="{{ route('formations.update', $formation->id_formation) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('formations.update', $formation->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -29,7 +29,7 @@
 
         <div class="mb-3">
             <label class="form-label">Nombre de Place</label>
-            <input type="number" name="Nombre de Place" class="form-control" value="{{ $formation->nbr_Place }}" required>
+            <input type="number" name="nbr_place" class="form-control" value="{{ $formation->nbr_Place }}" required>
         </div>
 
         <div class="mb-3">

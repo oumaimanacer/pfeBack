@@ -70,6 +70,11 @@ Route::put('/formations/{id}', [FormationController::class, 'update'])->name('fo
 Route::get('/formations/create', [FormationController::class, 'create'])->name('formations.create');
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
+Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
+Route::get('/formations/{formation}/participants', [FormationController::class, 'participants'])->name('formations.participants');
+Route::get('/formations/{formation}/feedbacks', [FormationController::class, 'feedbacks'])->name('formations.feedbacks');
+Route::get('/participants/{id}', [FormationController::class, 'showParticipant'])->name('participants.show');
+
 Route::get('/employees', [EmployeeController::class, 'index'])->name('users.index');
 Route::get('/employees/create', [EmployeeController::class, 'create'])->name('users.create');
 Route::post('/employees', [EmployeeController::class, 'store'])->name('users.store');

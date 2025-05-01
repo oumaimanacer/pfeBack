@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
 class CreateUsersTable extends Migration
 {
     public function up()
@@ -18,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->enum('role', ['SuperAdmin', 'Admin', 'Employe','Responsable RH','Formateur_interne','Formateur_externe']); // Rôle de l'utilisateur
             $table->string('poste')->nullable(); // Poste de l'utilisateur
             $table->date('dateEmbauche')->nullable(); // Date d'embauche
-            $table->string('entreprise')->nullable(); // Entreprise de l'utilisateur
+            $table->foreignId('entreprise_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('account_status')->default('actif');
             $table->timestamps(); // created_at et updated_at
         });
     }

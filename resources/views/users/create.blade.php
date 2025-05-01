@@ -52,8 +52,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="entreprise" class="form-label">Entreprise</label>
-                    <input type="text" class="form-control" id="entreprise" name="entreprise">
+    <label for="entreprise_id" class="form-label">Entreprise</label>
+    <!-- Champ caché avec l'ID de l'entreprise -->
+    <input type="hidden" name="entreprise_id" value="{{ $entreprises->firstWhere('nom_entreprise', 'Elyos Digital Tunisie')->id }}">
+    <p class="form-control">Elyos Digital Tunisie</p>  <!-- Affiche l'entreprise en texte mais non modifiable -->
+</div>
+
+
+
+                <div class="mb-3">
+                    <label for="account_status" class="form-label">Statut du compte</label>
+                    <select class="form-control" id="account_status" name="account_status" required>
+                        <option value="active">Actif</option>
+                        <option value="inactive">Inactif</option>
+                        <option value="suspended">Suspendu</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="btn btn-success">Ajouter</button>

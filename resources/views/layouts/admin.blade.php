@@ -171,9 +171,9 @@
             </a>
             
           </li>
-          @role('SuperAdmin')
+         @role('SuperAdmin')
           <li class="nav-item">
-            <a href="{{ route('entreprise.list') }}" class="nav-link >
+          <a href="{{ route('entreprise.list') }}" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
                 List of users
@@ -181,22 +181,24 @@
             </a>
           </li>
           @endrole
-          <li class="nav-item">
-            <a href="{{ route('formations.index') }}" class="nav-link >
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                List of Training
-              </p>
+          
+      @role('Admin')
+        <li class="nav-item"> 
+            <a href="{{ route('formations.index') }}" class="nav-link">
+                <i class="nav-icon fa fa-th"></i>
+                <p>List of Training</p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('users.index') }}" class="nav-link >
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-              List of Employees
-              </p>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('users.index') }}" class="nav-link">
+                <i class="nav-icon fa fa-th"></i>
+                <p>List of Employees</p>
             </a>
-          </li>
+        </li>
+   
+        @endrole
+   
+
          
           <!--<li class="nav-item">
             <a href="" class="nav-link 
@@ -241,13 +243,13 @@
     @yield('content')
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <!--<footer class="main-footer">
     <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.0.0-alpha
     </div>
-  </footer>
+  </footer>-->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

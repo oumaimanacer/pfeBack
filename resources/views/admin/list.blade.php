@@ -40,11 +40,11 @@
                         <td><span class="badge bg-info">{{ $entreprise->nombre_employes }}</span></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('entreprise.edit', $entreprise->id) }}" class="btn btn-sm btn-warning">✏ Modifier</a>
+                                <a href="{{ route('entreprise.edit', $entreprise->id) }}" class="btn btn-sm btn-warning">✏ </a>
                                 <form action="{{ route('entreprise.destroy', $entreprise->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette entreprise ?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">🗑 Supprimer</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">🗑</button>
                                 </form>
                             </div>
                         </td>

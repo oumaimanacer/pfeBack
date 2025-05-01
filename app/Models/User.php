@@ -1,18 +1,22 @@
 <?php
 
 namespace App\Models;
-use App\Models\Employe;
+
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail; 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasFactory, Notifiable;
+    use HasRoles;
+    use HasApiTokens;
 
+    // Champs modifiables en masse
     protected $fillable = [
         'nom',
         'prenom',
@@ -21,17 +25,49 @@ class User extends Authenticatable
         'role',
         'poste',
         'dateEmbauche',
-        'entreprise'
+        'entreprise_id',
+        'account_status',
     ];
 
+    // Champs à cacher dans les JSON
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
+    // Type de données à caster
     protected $casts = [
-        //'password' => 'hashed',
+        'email_verified_at' => 'datetime',
         'dateEmbauche' => 'date',
     ];
 
+    // 🔁 Relation avec l'entreprise
+    public function entreprise()
+    {
+        return $this->belongsTo(Entreprise::class);
+    }
+
+    // 🔁 Relation avec les formations (many-to-many)
+    public function formations()
+    {
+        return $this->belongsToMany(Formation::class)
+                    ->withPivot('date_participation')
+                    ->withTimestamps();
+    }
+
+    // 🔁 Relation avec les feedbacks
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    // ✅ Helper pour vérifier si le compte est actif
+    public function isActive()
+    {
+        return $this->account_status === 'actif';
+    }
    
+
+
+    
 }

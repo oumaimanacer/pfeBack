@@ -53,16 +53,15 @@
                 </div>
 
                 <!-- Sélection du formateur interne -->
-                <div class="mb-3 d-none" id="formateur_interne_section">
-                    <label class="form-label">Sélectionner un formateur interne</label>
-                    <select name="formateur_interne" class="form-control">
-                        <option value="">Choisir un formateur</option>
-                        @foreach($users as $user)
-                            <option value="{{ $user->prenom }}">{{ $user->prenom }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
+<div class="mb-3 d-none" id="formateur_interne_section">
+    <label class="form-label">Sélectionner un formateur interne</label>
+    <select name="formateur_interne" class="form-control">
+        <option value="">Choisir un formateur</option>
+        @foreach($employes as $employe)
+            <option value="{{ $employe->id }}">{{ $employe->prenom }}</option>
+        @endforeach
+    </select>
+</div>
                 <!-- Champ pour le formateur externe -->
                 <div class="mb-3 d-none" id="formateur_externe_section">
                     <label class="form-label">Nom du formateur externe</label>
