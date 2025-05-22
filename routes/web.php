@@ -4,12 +4,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
-
 
 
 /*
@@ -81,5 +81,11 @@ Route::post('/employees', [EmployeeController::class, 'store'])->name('users.sto
 Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('users.edit');
 Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('users.update');
 Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('users.destroy');
+//Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+Route::resource('categories', CategoryController::class);
+
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+
 
 

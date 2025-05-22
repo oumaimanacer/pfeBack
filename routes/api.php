@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FormationController;
 
 
 
@@ -31,4 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user-profile', [UserController::class, 'userProfile']);
 
 });
+Route::post('/participants/sync', [FormationController::class, 'syncFromFirebase']);
 
+Route::post('/feedbacks/sync', [FormationController::class, 'syncFeedback']);

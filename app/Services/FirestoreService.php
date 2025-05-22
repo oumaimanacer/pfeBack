@@ -28,6 +28,7 @@ class FirestoreService
                     'description' => $formation->description,
                     'date_debut' => $formation->date_debut,
                     'date_fin' => $formation->date_fin,
+                    'heure' => $formation->heure,
                     'nbr_place' => $formation->nbr_place,
                     'type' => $formation->type,
                     'formateur' => $formation->formateur,

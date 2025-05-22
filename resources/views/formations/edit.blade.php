@@ -27,6 +27,12 @@
             <input type="date" name="Date_Fin" class="form-control" value="{{ $formation->date_fin }}" required>
         </div>
 
+        <!-- ✅ Champ heure ajouté ici -->
+        <div class="mb-3">
+            <label class="form-label">Heure</label>
+            <input type="text" name="heure" class="form-control" value="{{ $formation->heure }}" placeholder="Ex: 14h00 - 16h00" required>
+        </div>
+
         <div class="mb-3">
             <label class="form-label">Nombre de Place</label>
             <input type="number" name="nbr_place" class="form-control" value="{{ $formation->nbr_Place }}" required>
@@ -36,10 +42,12 @@
             <label class="form-label">Type</label>
             <input type="text" name="type" class="form-control" value="{{ $formation->type }}" required>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Formateur</label>
             <input type="text" name="formateur" class="form-control" value="{{ $formation->formateur }}" required>
         </div>
+
         <button type="submit" class="btn btn-success">Modifier</button>
         <a href="{{ route('formations.index') }}" class="btn btn-secondary">Cancel</a>
     </form>

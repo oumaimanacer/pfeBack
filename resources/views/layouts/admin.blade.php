@@ -189,6 +189,12 @@
                 <p>List of Training</p>
             </a>
         </li>
+        <li class="nav-item"> 
+            <a href="{{ route('categories.index') }}" class="nav-link">
+                <i class="nav-icon fa fa-th"></i>
+                <p>List of categories</p>
+            </a>
+        </li>
         <li class="nav-item">
             <a href="{{ route('users.index') }}" class="nav-link">
                 <i class="nav-icon fa fa-th"></i>
